@@ -1,5 +1,7 @@
 <?php
+session_start();
 include("includes/header.php");
+
 ?>
 <?php
 require("includes/db.php");
@@ -8,15 +10,16 @@ $accountSuccess="";
 $error="";
 $success="";
 if(isset($_POST['login'])){
-	$user_email=$_POST['email'];
-	$user_password=$_POST['password'];
+	 $user_email=$_POST['email'];
+	 $user_password=$_POST['password'];
 
-	$select="select * from users_db where user_email='$user_email'and user_password='$user_password'";
+	$select="SELECT * from user_db where user_email='$user_email' and user_password='$user_password'";
 	$run=$conn->query($select);
 	if($run->num_rows>0){
 		while($row=$run->fetch_array()) {
-			$user_name=$row['user_name'];
-			$success="Login Successfully";
+		$_SESSION['user_name']=$user_name=$row['user_name'];
+		$_SESSION['user_email']=$user_email=$row['user_email'];
+		echo "<script> window.location.href='welcome.php'</script>";
 		}
 	}
 	else{

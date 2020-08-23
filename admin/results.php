@@ -12,7 +12,7 @@
     <option selected="selected" value="">Select Election</option>
     <?php
     $current_ts=date("Y-m-d");
-    $conn =new mysqli("localhost","root","","webproject_db");
+  $conn =new mysqli("182.50.133.85:3306 (MySQL)","ph17845981047","Adamjee06","webproject_db");
         $select="SELECT * FROM elections_tbl";
         $run=$conn->query($select);
         if($run->num_rows>0){
@@ -31,7 +31,7 @@
 }
 ?>
     </select>
-   
+   <br>
     <div class="form-group">
     <input type="submit" name="search_results" class="btn btn-success" value="Search Result">
    </div>
